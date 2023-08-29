@@ -22,8 +22,6 @@ builds:
       - arm64
     env:
       - CGO_ENABLED=0
-    hooks:
-      post: gon gon.hcl
 
 archives:
   - builds:
@@ -47,4 +45,14 @@ signs:
         "--detach-sign",
         "${artifact}",
       ]
+    output: true # for debugging
+
+
+  - id: sign-macos
+    ids:
+      - git-ssh-sign-macos
+    cmd: gon
+    args:
+      - gon.hcl
+    artifacts: binary
     output: true # for debugging

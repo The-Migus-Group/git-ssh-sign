@@ -3,24 +3,26 @@ signs:
     args: ["--batch", "-u", "{{ .Env.GPG_FINGERPRINT }}", "--output", "${signature}", "--detach-sign", "${artifact}"]
 
 builds:
-- binary: git-ssh-sign
-  id: git-ssh-sign
-  main: ./cmd/ssh-sign/main.go
-  goos:
-  - linux
-  - windows
-  goarch:
-  - amd64
-  - arm64
+  - binary: git-ssh-sign
+    id: git-ssh-sign
+    main: ./cmd/ssh-sign/main.go
+    goos:
+    - linux
+    - windows
+    goarch:
+    - amd64
+    - arm64
+    env:
+      - CGO_ENABLED=0
 
-# Separated build for the MacOS binary for notarization
-- binary: git-ssh-sign
-  id: git-ssh-sign-macos
-  main: ./cmd/ssh-sign/main.go
-  goos:
-  - darwin
-  goarch:
-  - amd64
-  - arm64
-  hooks:
-    post: gon gon.hcl
+  # Separated build for the MacOS binary for notarization
+  - binary: git-ssh-sign
+    id: git-ssh-sign-macos
+    main: ./cmd/ssh-sign/main.go
+    goos:
+    - darwin
+    goarch:
+    - amd64
+    - arm64
+    hooks:
+      post: gon gon.hcl

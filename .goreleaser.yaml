@@ -1,20 +1,3 @@
-signs:
-  - id: sign-win-linux
-    signature: "${artifact}.sig"
-    ids: 
-    - git-ssh-sign
-    artifacts: binary
-    args: ["--batch", "-u", "{{ .Env.GPG_FINGERPRINT }}", "--output", "${signature}", "--detach-sign", "${artifact}"]
-
-  - id: sign-macos
-    signature: "${artifact}.dmg"
-    ids: 
-    - git-ssh-sign-macos
-    cmd: gon
-    args:
-    - gon.hcl
-    artifacts: all
-
 builds:
   - binary: git-ssh-sign
     id: git-ssh-sign
@@ -39,3 +22,18 @@ builds:
     - arm64
     env:
       - CGO_ENABLED=0
+
+signs:
+  - id: sign-win-linux
+    ids: 
+    - git-ssh-sign
+    artifacts: all
+    args: ["--batch", "-u", "{{ .Env.GPG_FINGERPRINT }}", "--output", "${signature}", "--detach-sign", "${artifact}"]
+
+  - id: sign-macos
+    ids: 
+    - git-ssh-sign-macos
+    cmd: gon
+    args:
+    - gon.hcl
+    artifacts: all

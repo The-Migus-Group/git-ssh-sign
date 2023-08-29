@@ -27,9 +27,9 @@ jobs:
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
-          gh --repo mitchellh/gon release download --pattern "gon_macos.dmg" --dir /tmp
-          sudo hdiutil attach /tmp/gon_macos.dmg
-          sudo install -m 0755 /Volumes/gon/gon /usr/local/bin/
+          gh --repo mitchellh/gon release download --pattern "gon_macos.zip" --dir /tmp
+          sudo unzip /tmp/gon_macos.zip -d /
+          sudo chmod +x /gon
 
       - name: Import GPG key
         id: import_gpg

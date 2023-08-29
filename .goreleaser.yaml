@@ -25,4 +25,4 @@ builds:
     - amd64
     - arm64
     hooks:
-      post: /usr/local/bin/gon gon.hcl
+      post: /usr/local/bin/gon -log-level=debug gon.hcl

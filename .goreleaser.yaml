@@ -1,11 +1,15 @@
 signs:
-  - ids: git-ssh-sign
-    artifacts: binary
+  - id: sign-win-linux
     signature: "${artifact}.sig"
+    ids: 
+    - git-ssh-sign
+    artifacts: binary
     args: ["--batch", "-u", "{{ .Env.GPG_FINGERPRINT }}", "--output", "${signature}", "--detach-sign", "${artifact}"]
 
-  - ids: git-ssh-sign-macos
+  - id: sign-macos
     signature: "${artifact}.dmg"
+    ids: 
+    - git-ssh-sign-macos
     cmd: gon
     args:
     - gon.hcl

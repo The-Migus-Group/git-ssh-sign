@@ -27,7 +27,7 @@ signs:
   - id: sign-win-linux
     ids: 
     - git-ssh-sign
-    artifacts: all
+    artifacts: binary
     args: ["--batch", "-u", "{{ .Env.GPG_FINGERPRINT }}", "--output", "${signature}", "--detach-sign", "${artifact}"]
 
   - id: sign-macos
@@ -36,4 +36,4 @@ signs:
     cmd: gon
     args:
     - gon.hcl
-    artifacts: all
+    artifacts: binary

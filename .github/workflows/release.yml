@@ -45,7 +45,7 @@ jobs:
         with:
           distribution: goreleaser
           version: latest
-          args: release --clean --config .goreleaser.yml
+          args: release --clean --config ../../.goreleaser.yml
           workdir: ./cmd/ssh-sign/
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

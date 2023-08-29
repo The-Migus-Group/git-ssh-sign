@@ -27,13 +27,13 @@ archives:
   - builds:
       - git-ssh-sign
       - git-ssh-sign-macos
-    format: all
+    format: binary
 
 signs:
   - id: sign-win-linux
     ids:
       - git-ssh-sign
-    artifacts: binary
+    artifacts: all
     args:
       [
         "--batch",

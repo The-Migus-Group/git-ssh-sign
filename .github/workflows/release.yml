@@ -29,9 +29,7 @@ jobs:
         run: |
           gh --repo mitchellh/gon release download --pattern "gon_macos.dmg" --dir /tmp
           sudo hdiutil attach /tmp/gon_macos.dmg
-          sudo mkdir -p $HOME/.local/bin
-          sudo cp /Volumes/gon/gon $HOME/.local/bin/gon
-          echo "$HOME/.local/bin" >> $GITHUB_PATH
+          sudo cp /Volumes/gon/gon /usr/local/bin/gon
 
       - name: Import GPG key
         id: import_gpg

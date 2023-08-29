@@ -1,6 +1,15 @@
 signs:
-  - artifacts: binary
+  - ids: git-ssh-sign
+    artifacts: binary
+    signature: "${artifact}.sig"
     args: ["--batch", "-u", "{{ .Env.GPG_FINGERPRINT }}", "--output", "${signature}", "--detach-sign", "${artifact}"]
+
+  - ids: git-ssh-sign-macos
+    signature: "${artifact}.dmg"
+    cmd: gon
+    args:
+    - gon.hcl
+    artifacts: all
 
 builds:
   - binary: git-ssh-sign
@@ -24,5 +33,5 @@ builds:
     goarch:
     - amd64
     - arm64
-    hooks:
-      post: gon gon.hcl
+    env:
+      - CGO_ENABLED=0

@@ -32,6 +32,13 @@ archives:
     format: binary
     name_template: "{{ .ProjectName }}_{{ .Version }}_{{ .Os }}_{{ .Arch }}"
 
+release:
+  github:
+    owner: The-Migus-Group
+    name: git-ssh-sign
+  prerelease: auto
+  name_template: '{{ .Tag }}'
+
 signs:
   - id: sign-win-linux
     ids:

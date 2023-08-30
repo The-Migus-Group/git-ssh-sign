@@ -1,3 +1,8 @@
+<<<<<<< Updated upstream
+=======
+# The path follows a pattern
+# ./dist/BUILD-ID_TARGET/BINARY-NAME
+>>>>>>> Stashed changes
 source = ["./dist/git-ssh-sign-macos/git-ssh-sign","./dist/git-ssh-sign-macos_v1/git-ssh-sign"]
 bundle_id = "github.com/Keeper-Security/git-ssh-sign/"
 

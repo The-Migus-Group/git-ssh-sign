@@ -54,6 +54,7 @@ signs:
     output: true # for debugging
 
   - signature: "${artifact}"
+    id: nondefault
     ids:
       - git-ssh-sign-macos
     cmd: gon

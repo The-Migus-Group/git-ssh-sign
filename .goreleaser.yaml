@@ -30,17 +30,16 @@ archives:
       - git-ssh-sign
       - git-ssh-sign-macos
     format: binary
-    name_template: "{{ .ProjectName }}_{{ .Version }}_{{ .Os }}_{{ .Arch }}"
 
 release:
   github:
     owner: The-Migus-Group
     name: git-ssh-sign
   prerelease: auto
-  name_template: '{{ .Tag }}'
+  name_template: "{{ .Tag }}"
 
 signs:
-  - id: sign-win-linux
+  - signature: "${artifact}"
     ids:
       - git-ssh-sign
     artifacts: binary
@@ -55,3 +54,11 @@ signs:
         "${artifact}",
       ]
     output: true # for debugging
+
+  - signature: "${artifact}"
+    ids:
+      - git-ssh-sign-macos
+    cmd: gon
+    args:
+      - gon.hcl
+    artifacts: all

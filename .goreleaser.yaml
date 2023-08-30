@@ -1,7 +1,7 @@
 builds:
   - binary: git-ssh-sign
     id: git-ssh-sign
-    main: ./cmd/ssh-sign/main.go
+    main: ./cmd/ssh-sign
     goos:
       - linux
       - windows
@@ -14,7 +14,7 @@ builds:
   # Separated build for the MacOS binary for notarization
   - binary: git-ssh-sign
     id: git-ssh-sign-macos
-    main: ./cmd/ssh-sign/main.go
+    main: ./cmd/ssh-sign
     goos:
       - darwin
     goarch:
@@ -24,17 +24,7 @@ builds:
       - CGO_ENABLED=0
 
 archives:
-  - builds:
-      - git-ssh-sign
-      - git-ssh-sign-macos
-    format: binary
-
-release:
-  github:
-    owner: The-Migus-Group
-    name: git-ssh-sign
-  prerelease: auto
-  name_template: "{{ .Tag }}"
+  - format: binary
 
 signs:
   - signature: "${artifact}"
@@ -60,4 +50,4 @@ signs:
     cmd: gon
     args:
       - gon.hcl
-    artifacts: all
+    artifacts: binary
